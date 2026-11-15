@@ -40,7 +40,14 @@ gh pr create --base main --title "<type>: <summary>" --body-file <file>
 - The PR body follows `.github/pull_request_template.md` if the repo has one: what changed, why, how it was tested.
 - Report the PR URL back to the user.
 - Don't merge the PR unless asked. When asked, prefer `gh pr merge --squash --delete-branch` unless the repo uses another convention.
-- After merge: `git switch main && git pull && git branch -d <branch>`.
+- After merge, clean up without checking out `main`:
+  ```bash
+  git fetch --prune origin
+  git switch --detach origin/main
+  git branch -d <branch>
+  git push origin --delete <branch>   # if the merge didn't delete it
+  ```
+  Don't rely on `git switch main` — in `ai-skills`, `main` is checked out in a separate worktree (`c:\code\ai-skills-main`, which Claude Code loads skills from), and git refuses to check out a branch in two places. Starting every branch from `origin/main` works everywhere, worktree or not.
 
 ## Things not to do without explicit approval
 
