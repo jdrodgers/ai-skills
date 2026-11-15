@@ -13,6 +13,13 @@ Reusable skills for Claude Code (and other agents that read `SKILL.md` files). E
 | [public-repo-hygiene](skills/public-repo-hygiene/SKILL.md) | Committing, pushing, or publishing anything. Keeps IPs, hostnames, paths, emails and network layout out of public repos (blocks) and flags them in private ones (warns). Includes a scanner. |
 | [homelab-changes](skills/homelab-changes/SKILL.md) | Changing any live self-hosted system. Read-only by default; backup, dry run, rollback plan and approval for every change. |
 
+**Homelab**
+
+| Skill | Use it when |
+|---|---|
+| [arr-media-cleanup](skills/arr-media-cleanup/SKILL.md) | Freeing space on a Radarr/Sonarr + Plex server: delete through the APIs so nothing re-downloads, record state for restore, Plex watched checks, plan and dry run, untracked folders and download leftovers. |
+| [synology-ssh-access](skills/synology-ssh-access/SKILL.md) | Setting up or using SSH on a Synology NAS for an agent or service account: administrators-group rule, key setup and permissions, custom ports, limited sudo, Windows quirks. |
+
 **Development**
 
 | Skill | Use it when |
