@@ -59,7 +59,9 @@ $octet = '\d{1,3}'
 Add-Rule 'Private IPv4 address' "(?<![\d.])(?:10(?:\.$octet){3}|192\.168(?:\.$octet){2}|172\.(?:1[6-9]|2\d|3[01])(?:\.$octet){2}|100\.(?:6[4-9]|[7-9]\d|1[01]\d|12[0-7])(?:\.$octet){2}|169\.254(?:\.$octet){2})(?![\d.]*\d)"
 Add-Rule 'Private IPv6 address' '(?<![0-9a-f:])fd[0-9a-f]{2}:[0-9a-f]{0,4}:[0-9a-f:]+'
 Add-Rule 'MAC address' '(?<![0-9a-f:-])[0-9a-f]{2}(?:[:-][0-9a-f]{2}){5}(?![0-9a-f:-])'
-Add-Rule 'Internal hostname' '\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:lan|local|internal|intranet|localdomain|home\.arpa|corp)\b(?!\.[a-z])'
+# Not right after a dot, so dotfile names like ".env.local" aren't taken for hosts
+# (hosts inside URLs still match).
+Add-Rule 'Internal hostname' '(?<![\w.-])[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:lan|local|internal|intranet|localdomain|home\.arpa|corp)\b(?!\.[a-z])'
 Add-Rule 'Personal Windows path' '[a-z]:\\{1,2}Users\\{1,2}(?!(?:Public|Default|All Users)\b)[^\\\s"''<>$%{}]+' '\\Users\\{1,2}(?:<|\$|%)'
 Add-Rule 'Personal home path' '(?<![\w.-])/(?:home|Users)/(?!runner\b|user\b|username\b|you\b)[a-z_][a-z0-9_.-]*'
 Add-Rule 'Email address' '\b[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\b' '(?:@example\.(?:com|org|net)|\.invalid$|\.test$|\.example$|noreply|no-reply)'
