@@ -72,7 +72,7 @@ Add these on a branch such as `chore/repo-setup` and open a PR (see `git-workflo
 - **`.gitattributes`**: `* text=auto eol=lf`, `*.ps1`/`*.bat`/`*.cmd` as `eol=crlf`, binaries marked `binary`.
 - **`.editorconfig`**: UTF-8, final newline, trim trailing whitespace, 2-space default indent (4 where the language expects it).
 - **`.github/pull_request_template.md`**: Summary / Why / Testing / Checklist (including "no secrets committed").
-- **`.github/workflows/`**: the project's checks, plus a gitleaks secret-scan job. Start each workflow with `permissions: contents: read` and pin Actions to commit SHAs (see `supply-chain`).
+- **`.github/workflows/`**: the project's checks, plus a gitleaks secret-scan job (copy the ai-skills one). Start each workflow with `permissions: contents: read` and pin Actions to commit SHAs (see `supply-chain`). The gitleaks job also needs `pull-requests: read` on private repos, because it lists the PR's commits through the API.
 - **`.gitleaks.toml`** (public repos): copy from the ai-skills root; it adds private-IP and MAC rules to gitleaks' defaults.
 - **`.github/dependabot.yml`**: the `github-actions` ecosystem weekly, plus each package ecosystem the repo uses.
 - **`LICENSE`** (public repos): ask the user. With no license file, others may read the code but have no right to reuse it; MIT is the common permissive choice.
