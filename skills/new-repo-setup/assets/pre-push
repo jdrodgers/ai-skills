@@ -1,0 +1,11 @@
+#!/bin/sh
+# Blocks pushes to main from this clone. This repo is private on a free GitHub plan,
+# which has no server-side branch protection, so this is the guard instead.
+# Install: git config core.hooksPath hooks   (Install-Workstation.ps1 does this)
+while read local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = "refs/heads/main" ]; then
+    echo "pre-push: pushing to main is blocked. Push a branch and open a pull request." >&2
+    exit 1
+  fi
+done
+exit 0
