@@ -46,13 +46,9 @@ New-Item -ItemType Junction -Path "$env:USERPROFILE\.claude\skills\credentials-h
 
 ## Global instructions (`CLAUDE.md`)
 
-[`claude/CLAUDE.md`](claude/CLAUDE.md) holds short defaults that apply to every project (for example, docstrings on all Python functions). Rules that need steps or examples belong in a skill instead. Link it to `~/.claude/CLAUDE.md` so edits here take effect everywhere (a file symlink needs Developer Mode or an elevated shell on Windows):
+[`claude/CLAUDE.md`](claude/CLAUDE.md) holds short defaults that apply to every project (for example, docstrings on all Python functions). Rules that need steps or examples belong in a skill instead.
 
-```powershell
-New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\CLAUDE.md" -Target "c:\code\ai-skills-main\claude\CLAUDE.md"
-```
-
-Point the link at a checkout that stays on `main`, so a feature branch never changes what every session loads.
+[workstation-setup](https://github.com/jdrodgers/workstation-setup) keeps `~/.claude/CLAUDE.md` in step with this file. Its session-start hook copies it from the `main` worktree, so only merged changes reach every session, and it never overwrites local edits. Without workstation-setup, copy the file to `~/.claude/CLAUDE.md` yourself.
 
 ## Contributing
 
