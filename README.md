@@ -44,6 +44,12 @@ New-Item -ItemType Junction -Path "$env:USERPROFILE\.claude\skills\credentials-h
 
 **As a plugin:** the repo includes [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json), so it can be loaded as a Claude Code plugin.
 
+## Global instructions (`CLAUDE.md`)
+
+[`claude/CLAUDE.md`](claude/CLAUDE.md) holds short defaults that apply to every project (for example, docstrings on all Python functions). Rules that need steps or examples belong in a skill instead.
+
+[workstation-setup](https://github.com/jdrodgers/workstation-setup) keeps `~/.claude/CLAUDE.md` in step with this file. Its session-start hook copies it from the `main` worktree, so only merged changes reach every session, and it never overwrites local edits. Without workstation-setup, copy the file to `~/.claude/CLAUDE.md` yourself.
+
 ## Contributing
 
 `main` is protected: work on a branch and open a pull request. See [writing-skills](skills/writing-skills/SKILL.md), and run the check before you push:
