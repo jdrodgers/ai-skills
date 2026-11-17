@@ -44,6 +44,16 @@ New-Item -ItemType Junction -Path "$env:USERPROFILE\.claude\skills\credentials-h
 
 **As a plugin:** the repo includes [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json), so it can be loaded as a Claude Code plugin.
 
+## Global instructions (`CLAUDE.md`)
+
+[`claude/CLAUDE.md`](claude/CLAUDE.md) holds short defaults that apply to every project (for example, docstrings on all Python functions). Rules that need steps or examples belong in a skill instead. Link it to `~/.claude/CLAUDE.md` so edits here take effect everywhere (a file symlink needs Developer Mode or an elevated shell on Windows):
+
+```powershell
+New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\CLAUDE.md" -Target "c:\code\ai-skills-main\claude\CLAUDE.md"
+```
+
+Point the link at a checkout that stays on `main`, so a feature branch never changes what every session loads.
+
 ## Contributing
 
 `main` is protected: work on a branch and open a pull request. See [writing-skills](skills/writing-skills/SKILL.md), and run the check before you push:
